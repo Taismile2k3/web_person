@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script src="logic.js" ></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<style>
+    /* Định dạng thanh điều hướng */
+    .header-nav-wrap {
+    background-color: #3ca5b3; /* Màu nền đậm hơn */
+    padding: 20px; /* Tạo khoảng cách giữa nội dung và mép */
+    box-shadow: 0 4px 8px rgba(80, 163, 109, 0.1); /* Tạo đổ bóng để làm nổi bật */
+    position: sticky;
+    top: 0;
+    z-index: 1000000000;
+    height: 80px;
+}
+
+/* Logo */
+.header-logo a {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Định dạng danh sách các liên kết */
+.header-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: contents;
+    justify-content: space-around;
+    width: 50%; /* Điều chỉnh kích thước của thanh menu */
+}
+
+/* Các mục trong danh sách liên kết */
+.header-nav li {
+    margin: 0 15px;
+}
+
+/* Định dạng cho các liên kết */
+.header-nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột */
+}
+
+/* Hiệu ứng hover cho liên kết */
+.header-nav a:hover {
+    background-color: #3ea4b1; /* Màu khi hover */
+    color: #f1f1f1; /* Màu chữ khi hover */
+    border-radius: 5px;
+}
+
+</style>
+<body>
+    <nav class="header-nav-wrap" style="background-color: #333333; display: flex; font-size: x-large; justify-content: space-around; align-items: center;">
+        <div class="header-logo" style="margin-top: 16px;">
+            <a class="site-logo" style="text-decoration: none; color: white;" href="../index.html">
+                <p>Thiên Tài - 21130643</p>
+            </a>
+        </div>
+        <ul class="header-nav" style="line-height: 5rem;">
+            <li style="font-size: x-large;"><a href="../index.html" title="Home">Home</a></li>
+            <li style="font-size: x-large;"><a href="../about.html" title="Home">About</a></li>
+            <li style="font-size: x-large;"><a href="../Lab 1/index.html" title="Events">Lab 1</a></li>
+            <li style="font-size: x-large;"><a href="../Lab 2/index.html" title="Events">Lab 2</a></li>
+            <li  style="font-size: x-large;"><a href="../Lab 3/index.html" title="Events">Lab 3</a></li>
+            <li   style="font-size: x-large;"><a href="../Lab 4/index.html" title="Events">Lab 4</a></li>
+            <li  class="current"style="font-size: x-large;"><a href="../Lab 5/index.html" title="Events">Lab 5</a></li>
+            <li style="font-size: x-large;"><a href="../Lab 6/index.html" title="Events">Lab 6</a></li>
+            <li style="font-size: x-large;"><a href="../contact.html" title="Contact us">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="header">
+        <h1>My Learning</h1>
+        <p style="margin-top: 30px;">
+            <strong>87hr 36min</strong> watched 
+            <i class="fa fa-exclamation" aria-hidden="true"></i> 
+            <span style="font-size: smaller;    margin-left: 10px;">View all activity</span>
+        </p>
+        
+    </div>
+    <div class="content">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showContent('allCourses')">All courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showContent('learningPaths')">Learning paths</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showContent('certifications')">Certifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showContent('archived')">Archived</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showContent('learningTools')">Learning tools</a>
+            </li>
+        </ul>
+        
+        <div id="contentDisplay">
+            <div id="allCourses" class="content-section" style="display:none;">
+                <h5>All Courses</h5>
+                <p>Here you can see all your courses.</p>
+            </div>
+            <div id="learningPaths" class="content-section" style="display:none;">
+                <h5>Learning Paths</h5>
+                <p>Your learning paths will be displayed here.</p>
+            </div>
+            <div id="certifications" class="content-section" style="display:block;">
+                <div>
+                    <h5 class="badge-section" onclick="toggleContent('badge-content', 'badge-icon')" style="cursor: pointer;">
+                        My badges
+                        <span id="badge-icon" class="fas fa-chevron-up float-end"></span>
+                    </h5>
+                    <div id="badge-content" style="display: none;">
+                        <p>You have earned and uploaded <strong>0 badges</strong> <i class="fas fa-info-circle"></i></p>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <p style="flex: 1; margin-right: 20px;">
+                                Currently, there are no badges uploaded to your profile. Begin your journey towards your certification goals or 
+                                <a href="#">upload your third-party badges</a> to your profile and impress your manager and peers with your accomplishments. 
+                                Start preparing for your next certificate today!
+                            </p>
+                            <button class="btn btn-purple" style="background: #a535f0; color: white;margin-left: 50px;">Import new badge</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div >
+                    <h5 class="certification-section" onclick="toggleContent('certification-content', 'certification-icon')" style="cursor: pointer;">
+                        Certification preparation
+                        <span id="certification-icon" class="fas fa-chevron-up float-end"></span>
+                    </h5>
+                    <div id="certification-content" style="display: none;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                        <p>You are preparing for <strong>4 certifications</strong> <i class="fas fa-info-circle"></i></p>
+                        <button class="btn btn-outline-secondary float-end">Explore certification preparation</button>
+                    </div>
+                        <div class="d-flex mt-3" style="justify-content: space-between;">
+                            <div class="certification-card">
+                                <img alt="Oracle Certified Associate, Java SE 8 Programmer badge" src="https://storage.googleapis.com/a1aa/image/NW8E2A5ONkqeBaDoxOvERWOeKioDECSO3vdLd7ep4pBarBVnA.jpg"/>
+                                <div>
+                                    <h6>Oracle Certified Associate, Java SE 8 Programmer</h6>
+                                    <p>Oracle</p>
+                                </div>
+                            </div>
+                            <div class="certification-card">
+                                <img alt="ISTQB Certified Tester Foundation Level (CTFL) badge" src="https://storage.googleapis.com/a1aa/image/NMB9fEeRCjiloUCy5XGmperHDUPVPDMgxy5RPynPodrcrBVnA.jpg"/>
+                                <div>
+                                    <h6>ISTQB Certified Tester Foundation Level (CTFL)</h6>
+                                    <p>Brightest</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="archived" class="content-section" style="display:none;">
+                <div class="container">
+                    <div class="course-card">
+                     <div class="row">
+                      <div class="col-md-3">
+                       <img alt="CSR - Corporate Social Responsibility Training 2024" height="200" src="https://storage.googleapis.com/a1aa/image/MSiTfsZSO3VOTSJfC549fl74zTiJc3LyTHDx4hCTsd5fIFqOB.jpg" width="300"/>
+                      </div>
+                      <div class="col-md-9">
+                       <div class="course-title">
+                        FPT_Corporate Social Responsibility Training 2024
+                       </div>
+                       <div class="course-subtitle">
+                        FSOFT Content Development
+                       </div>
+                       <div class="course-status">
+                        100% complete
+                       </div>
+                       <div class="course-rating">
+                        <span class="fa fa-star">
+                        </span>
+                        <span class="fa fa-star">
+                        </span>
+                        <span class="fa fa-star">
+                        </span>
+                        <span class="fa fa-star">
+                        </span>
+                        <span class="fa fa-star-o">
+                        </span>
+                        Your rating
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+            </div>
+            <div id="learningTools" class="content-section" style="display:none;">
+                <div class="content">
+                    <h2>Learning tools</h2>
+                    <p>Explore a diverse range of courses and take advantage of these versatile tools to gain knowledge, skills, and confidence at your own pace.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <h5><i class="fas fa-bell"></i> Learning reminders</h5>
+                                <p>Set time aside to learn and get reminders using your scheduler.</p>
+                                <p>You currently have no ongoing reminders.</p>
+                                <a href="#">See more</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <h5><i class="fas fa-lightbulb"></i> Reflections <span class="badge">Beta</span></h5>
+                                <p>Take time to reflect to strengthen your learning.</p>
+                                <p>You have currently no recorded reflections on your learning journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

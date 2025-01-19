@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Khóa Học</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  /* Định dạng thanh điều hướng */
+  .header-nav-wrap {
+  background-color: #3ca5b3; /* Màu nền đậm hơn */
+  padding: 20px; /* Tạo khoảng cách giữa nội dung và mép */
+  box-shadow: 0 4px 8px rgba(80, 163, 109, 0.1); /* Tạo đổ bóng để làm nổi bật */
+  position: sticky;
+  top: 0;
+  z-index: 1000000000;
+  height: 80px;
+}
+
+/* Logo */
+.header-logo a {
+  font-family: 'Arial', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* Định dạng danh sách các liên kết */
+.header-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
+  justify-content: space-around;
+  width: 50%; /* Điều chỉnh kích thước của thanh menu */
+}
+
+/* Các mục trong danh sách liên kết */
+.header-nav li {
+  margin: 0 15px;
+}
+
+/* Định dạng cho các liên kết */
+.header-nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột */
+}
+
+/* Hiệu ứng hover cho liên kết */
+.header-nav a:hover {
+  background-color: #3ea4b1; /* Màu khi hover */
+  color: #f1f1f1; /* Màu chữ khi hover */
+  border-radius: 5px;
+}
+
+
+
+</style>
+<body>
+  <nav class="header-nav-wrap" style="background-color: #333333; display: flex; font-size: x-large; justify-content: space-around; align-items: center;">
+    <div class="header-logo" style="margin-top: 16px;">
+        <a class="site-logo" style="text-decoration: none; color: white;" href="../index.html">
+            <p>Thiên Tài - 21130643</p>
+        </a>
+    </div>
+    <ul class="header-nav" style="line-height: 5rem;">
+        <li style="font-size: x-large;"><a href="../index.html" title="Home">Home</a></li>
+        <li style="font-size: x-large;"><a href="../about.html" title="Home">About</a></li>
+        <li style="font-size: x-large;"><a href="../Lab 1/index.html" title="Events">Lab 1</a></li>
+        <li style="font-size: x-large;"><a href="../Lab 2/index.html" title="Events">Lab 2</a></li>
+        <li  style="font-size: x-large;"><a href="../Lab 3/index.html" title="Events">Lab 3</a></li>
+        <li   style="font-size: x-large;"><a href="../Lab 4/index.html" title="Events">Lab 4</a></li>
+        <li style="font-size: x-large;"><a href="../Lab 5/index.html" title="Events">Lab 5</a></li>
+        <li class="current" style="font-size: x-large;"><a href="../Lab 6/index.html" title="Events">Lab 6</a></li>
+        <li style="font-size: x-large;"><a href="../contact.html" title="Contact us">Contact</a></li>
+    </ul>
+</nav>
+  <div class="container">
+    <h1>Quản Lý Khóa Học</h1>
+    <!-- Form quản lý khóa học -->
+    <div class="form-container">
+      <form id="courseForm">
+        <div class="form-group">
+          <label for="courseId">Mã Khóa Học:</label>
+          <input type="text" id="courseId" name="courseId" readonly placeholder="Hệ thống tự động tạo">
+        </div>
+        <div class="form-group">
+          <label for="courseName">Tên Khóa Học: <span class="required">*</span></label>
+          <input type="text" id="courseName" name="courseName" maxlength="255" required placeholder="Nhập tên khóa học">
+        </div>
+        <div class="form-group">
+          <label for="courseDescription">Mô Tả Khóa Học:</label>
+          <textarea id="courseDescription" name="courseDescription" rows="4" placeholder="Nhập mô tả chi tiết (nếu có)"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="createdBy">Người Tạo Khóa Học: <span class="required">*</span></label>
+          <select id="createdBy" name="createdBy" required>
+            <option value="">Chọn người tạo</option>
+            <option value="admin">Admin</option>
+            <option value="teacher">Giáo Viên</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="createdAt">Ngày Tạo:</label>
+          <input type="text" id="createdAt" name="createdAt" readonly placeholder="Hệ thống tự động tạo">
+        </div>
+        <div class="form-group">
+          <label for="updatedAt">Ngày Cập Nhật:</label>
+          <input type="text" id="updatedAt" name="updatedAt" readonly placeholder="Hệ thống tự động cập nhật">
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Lưu Khóa Học</button>
+          <button type="button" id="deleteBtn" class="delete-btn">Xóa Khóa Học</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Khu vực hiển thị danh sách khóa học -->
+    <div class="course-list-container">
+      <h2>Danh Sách Khóa Học</h2>
+      <table id="courseList">
+        <thead>
+          <tr>
+            <th>Mã</th>
+            <th>Tên Khóa Học</th>
+            <th>Mô Tả</th>
+            <th>Người Tạo</th>
+            <th>Ngày Tạo</th>
+            <th>Ngày Cập Nhật</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Danh sách khóa học sẽ được thêm ở đây -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

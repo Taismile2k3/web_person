@@ -1,0 +1,218 @@
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}/* Đặt nền gradient cho toàn bộ trang */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(to bottom, #6a11cb, #2575fc); /* Gradient nền chính */
+  color: #333;
+  padding: 0 1rem;
+}
+  
+  /* Container chính */
+  .login-container, .dashboard-container, .exercise-container {
+    max-width: 500px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px; /* Bo góc lớn hơn */
+    border: 1px solid #e0e0e0; /* Đường viền nhạt */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Bóng đổ mềm */
+  }
+  
+  .dashboard-container, .exercise-container {
+    max-width: 800px;
+  }
+  
+  /* Tiêu đề chính */
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Nhãn (label) */
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  /* Input và Select */
+  input, select, textarea, button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Bo góc nhẹ */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Hiệu ứng chìm */
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.5); /* Hiệu ứng ánh sáng */
+  }
+  
+  /* Nút bấm */
+  button {
+    background-color: #2575fc;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 8px; /* Bo góc nút */
+  }
+  
+  button:hover {
+    background-color: #6a11cb;
+    transform: translateY(-2px); /* Hiệu ứng nổi */
+  }
+  
+  /* Link quên mật khẩu */
+  .forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #2575fc;
+    text-decoration: none;
+    margin-top: -10px;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Bộ lọc và tìm kiếm trên dashboard */
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 12px; /* Bo góc bộ lọc */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+  }
+  
+  .filters select, .filters input {
+    width: 48%;
+  }
+  
+  /* Danh sách bài tập */
+  .exercise-list {
+    margin-top: 20px;
+  }
+  
+  .exercise-item {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px; /* Bo góc khung bài tập */
+    border: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ nổi */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .exercise-item:hover {
+    transform: translateY(-5px); /* Hiệu ứng nổi khi hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .exercise-item h3 {
+    margin: 0 0 10px;
+    color: #2575fc;
+  }
+  
+  .exercise-item p {
+    margin: 0;
+    color: #555;
+  }
+  
+  /* Môi trường code */
+  .code-environment {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .code-environment textarea {
+    height: 200px;
+    font-family: 'Courier New', Courier, monospace;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    resize: none;
+  }
+  
+  .code-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .code-buttons button {
+    width: 30%;
+  }
+  
+  /* Test cases */
+  .test-cases {
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .test-cases h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .test-cases ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .test-cases li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .test-cases li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Mobile-friendly */
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+    }
+  
+    .filters select, .filters input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .code-buttons button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }

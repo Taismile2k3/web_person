@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Hướng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Bảng Điều Hướng</h1>
+    <div class="filters">
+      <label for="filter-language">Lọc theo ngôn ngữ:</label>
+      <select id="filter-language">
+        <option value="all">Tất cả</option>
+        <option value="C"><a href="exercise.html">C</a></option>
+        <option value="Python">Python</option>
+        <option value="Java">Java</option>
+      </select>
+      <input type="text" id="search-keyword" placeholder="Tìm kiếm bài tập...">
+    </div>
+    <div class="exercise-list">
+      <!-- Các bài tập -->
+      <div class="exercise-item">
+        <h3>Bài tập 1: Hello World</h3>
+        <p>Mô tả: Viết chương trình in ra "Hello World".</p>
+        <p>Độ khó: <strong>Dễ</strong></p>
+        <a href="exercise.html" class="btn">Bắt đầu</a> <!-- Liên kết tới bài tập -->
+      </div>
+      <div class="exercise-item">
+        <h3>Bài tập 2: Tính tổng</h3>
+        <p>Mô tả: Viết chương trình tính tổng hai số nguyên.</p>
+        <p>Độ khó: <strong>Dễ</strong></p>
+        <a href="exercise.html" class="btn">Bắt đầu</a> <!-- Liên kết tới bài tập -->
+      </div>
+      <div class="exercise-item">
+        <h3>Bài tập 3: Sắp xếp mảng</h3>
+        <p>Mô tả: Sắp xếp một mảng số nguyên theo thứ tự tăng dần.</p>
+        <p>Độ khó: <strong>Trung bình</strong></p>
+        <a href="exercise.html" class="btn">Bắt đầu</a> <!-- Liên kết tới bài tập -->
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Poppins" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="index.html" style="font-family: Arial, Helvetica, sans-serif;"><img src="assets/img/output-onlinepngtools.png" alt=""></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="groupdiary.html">Group Diary</a></li>
+          <li><a href="projectRequirment.html" class="active">Project</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="./Project_Group/page-login.html" class="getstarted" target="_blank">Go to project</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Project</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Project</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <section id="team" class="team section-bg">
+                <div class="container text-center">
+                  <a class="choised" onclick="openContent(event, 'requirement')">Requirement</a>
+                  <a class="notchoise" onclick="openContent(event, 'design')">Design</a>
+                  <a class="notchoise" onclick="openContent(event, 'implement')">Implement</a>
+                </div>
+        
+             
+              <!-- Nội dung cho Requirement -->
+              <div id="requirement" class="tabcontent" style="display: block; width: 100%; margin-top: 20px;">
+                <table id="requirement-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Trang</th>
+                      <th>Người đề xuất</th>
+                      <th>Người thiết kế</th>
+                      <th>Người thực hiện</th>
+                      <th>Thời gian dự kiến</th>
+                      <th>Độ Hoàn Thiện</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Nội dung sẽ được thêm qua JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+              
+                <script>
+                    // Hàm render dữ liệu vào bảng
+  function renderTable(data) {
+    const tbody = document.querySelector("#requirement-table tbody");
+    tbody.innerHTML = ""; // Xóa nội dung cũ (nếu có)
+
+    data.forEach(task => {
+      const progress = `<div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: ${task.hoanThien}%;"
+                            aria-valuenow="${task.hoanThien}" aria-valuemin="0" aria-valuemax="100">${task.hoanThien}%</div>
+                        </div>`;
+      const row = `
+        <tr>
+          <td>${task.stt}</td>
+          <td>${task.trang}</td>
+          <td>${task.deXuat}</td>
+          <td>${task.thietKe}</td>
+          <td>${task.thucHien}</td>
+          <td>${task.thoiGian}</td>
+          <td>${progress}</td>
+        </tr>
+      `;
+      tbody.innerHTML += row;
+    });
+  }
+
+  // Tải dữ liệu từ file JSON
+  fetch("data_congviec.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Không thể tải file JSON");
+      }
+      return response.json();
+    })
+    .then(data => {
+      renderTable(data); // Gọi hàm để render dữ liệu vào bảng
+    })
+    .catch(error => {
+      console.error("Lỗi khi tải file JSON:", error);
+    });
+
+  // Hàm để chuyển đổi giữa các tab
+  function openContent(evt, tabName) {
+    // Ẩn tất cả các tab
+    const tabContents = document.querySelectorAll('.tabcontent');
+    tabContents.forEach(content => {
+      content.style.display = "none";
+    });
+
+    // Loại bỏ class 'choised' và thêm 'notchoise' cho tất cả các liên kết
+    const links = document.querySelectorAll('.container a');
+    links.forEach(link => {
+      link.classList.remove('choised');
+      link.classList.add('notchoise');
+    });
+
+    // Hiển thị tab được chọn
+    document.getElementById(tabName).style.display = "block";
+
+    // Thêm class 'choised' vào liên kết hiện tại
+    evt.currentTarget.classList.add('choised');
+  }
+                </script>    
+              <!-- Nội dung cho Design -->
+              
+              <div id="design" class="tabcontent" style="display: none; width: 100%; margin-top: 20px;">
+                <section id="features" class="features">
+                    <div class="container">
+                        <div class="row">
+                            <div class="box" style="padding-bottom: 50px;">
+                                <button class="download" onclick="downloadImages()">Download All</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <ul class="nav nav-tabs flex-column" id="tabsList">
+                                    <!-- Các tab sẽ được tạo động ở đây -->
+                                </ul>
+                            </div>
+                            <div class="col-lg-9 mt-4 mt-lg-0">
+                                <div class="tab-content" id="tabsContent">
+                                    <!-- Nội dung tab sẽ được tạo động ở đây -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <script>
+// Hàm tải dữ liệu từ file JSON
+function loadTabs() {
+  // Sử dụng fetch để tải file JSON từ server
+  fetch('data_Design.json')
+    .then(response => response.json())
+    .then(data => {
+      // Lấy phần tử chứa các tab và nội dung
+      const tabsList = document.getElementById('tabsList');
+      const tabsContent = document.getElementById('tabsContent');
+
+      // Duyệt qua từng tab trong JSON và tạo các phần tử HTML tương ứng
+      data.tabs.forEach(tab => {
+        // Tạo tab trong danh sách
+        const tabLink = document.createElement('li');
+        tabLink.classList.add('nav-item');
+        tabLink.innerHTML = `<a class="nav-link" data-bs-toggle="tab" href="#${tab.tabId}" style="font-size: 20px;">${tab.title}</a>`;
+        tabsList.appendChild(tabLink);
+
+        // Tạo nội dung cho từng tab
+        const tabPane = document.createElement('div');
+        tabPane.classList.add('tab-pane');
+        tabPane.id = tab.tabId;
+        tabPane.innerHTML = `
+          <div class="row">
+            <div class="box">
+              <a class="download-link" href="${tab.download}" download="${tab.title}.jpg">
+                <button class="download">Download</button>
+              </a>
+            </div>
+            <div class="col-lg-4 text-center order-1 order-lg-2">
+              <img src="${tab.image}" alt="${tab.title}" style="width: 972px;">
+            </div>
+          </div>
+        `;
+        tabsContent.appendChild(tabPane);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading the JSON file:', error);
+    });
+}
+
+// Gọi hàm loadTabs khi trang được tải
+window.onload = loadTabs;
+
+
+            </script>
+              <div id="implement" class="tabcontent" style="display: none; width: 100%; margin-top: 20px;">
+                <section id="features" class="features">
+                  <div class="container">
+                    <div class="row">
+                      <div class="box" style="padding-bottom: 50px;">
+                        <button class="download" onclick="downloadAllImages()">Download All</button>
+                      </div>
+                      <div class="col-lg-3">
+                        <ul class="nav nav-tabs flex-column" id="tab-menu">
+                          <!-- Danh sách tab sẽ được sinh tự động -->
+                        </ul>
+                      </div>
+                      <div class="col-lg-9 mt-4 mt-lg-0">
+                        <div class="tab-content" id="tab-content">
+                          <!-- Nội dung các tab sẽ được sinh tự động -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              
+            </div>
+        </section>
+
+<script>
+ fetch('data_implement.json')
+  .then(response => response.json())
+  .then(tabs => {
+    const tabMenu = document.getElementById("tab-menu");
+    const tabContent = document.getElementById("tab-content");
+
+    tabs.forEach((tab, index) => {
+      // Tạo tab menu
+      const menuItem = document.createElement("li");
+      menuItem.className = "nav-item";
+      menuItem.innerHTML = `
+        <a class="nav-link ${index === 0 ? "active" : ""}" data-bs-toggle="tab" href="#${tab.id}" style="font-size: 20px;">
+          ${tab.title}
+        </a>`;
+      tabMenu.appendChild(menuItem);
+
+      // Tạo nội dung tab
+      const contentItem = document.createElement("div");
+      contentItem.className = `tab-pane ${index === 0 ? "active show" : ""}`;
+      contentItem.id = tab.id;
+
+      if (tab.images.length > 0) {
+        const imageElements = tab.images.map((image) => `
+          <div class="col-lg-4">
+            <img src="${image}" alt="" class="img-fluid">
+          </div>`).join("");
+
+        contentItem.innerHTML = `
+          <div class="row">${imageElements}</div>
+          <button class="download" onclick="downloadTabImages('${tab.id}')">Download All</button>`;
+      } else {
+        contentItem.innerHTML = `<div class="row"><p>No content available.</p></div>`;
+      }
+
+      tabContent.appendChild(contentItem);
+    });
+
+    // Hàm tải xuống hình ảnh của một tab
+    function downloadTabImages(tabId) {
+      const tab = tabs.find(t => t.id === tabId);
+      if (tab) {
+        tab.images.forEach((image) => {
+          const a = document.createElement("a");
+          a.href = image;
+          a.download = image.split("/").pop();
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+      }
+    }
+  })
+  .catch(error => console.error('Error loading tabs.json:', error));
+
+
+
+</script>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3 style="font-family: Arial, Helvetica, sans-serif;">GROUP 8</h3>
+              <p>
+                Linh Trung Ward <br>
+                Thu Duc - Ho Chi Minh City -Viet Nam<br>
+                <strong>Phone:</strong> +0795035755<br>
+                <strong>Email:</strong> group8@gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>GROUP 08</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">GROUP 08</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  
+</body>
+
+</html>
